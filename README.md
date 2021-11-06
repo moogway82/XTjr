@@ -102,13 +102,13 @@ The following signals are missing:
 - DACK 2
 - DACK 3
 - TC
+- AEN (pin grounded)
 - IRQ 2
 - IRQ 3
 - IRQ 5
 - IRQ 6
-- AEN (pin grounded)
 - I/O Check
-- Refresh>
+- Refresh
 
 
 
