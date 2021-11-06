@@ -38,15 +38,7 @@ Single board, integrated 8088 PC based on the Xi 8088.
 | 0x020-021 | 0 0 0 0 1 0 0 0 0 A0 | PIC 8259A |
 | G0x040-043 | 0 0 0 1 0 0 0 0 A1 A0 | PIT 8254 |
 | 0x060, 0x064 | 0 0 0 1 1 0 0 A2 0 0 | Keyboard/Mouse Controller 8242 |
-| 0x061 | 0 0 0 1 1 0 0 0 0 1 | Port B (Speaker, Turbo)
-0. PIT Ch2 on/off
-1. Spkr on/off
-2. Turbo on/off
-3. Spare on/off reg
-4. PIT Ch0 output /2
-5. PIT Ch2 output
-6. Always 0
-7. Always 0 |
+| 0x061 | 0 0 0 1 1 0 0 0 0 1 | Port B (Speaker, Turbo)<br/>0. PIT Ch2 on/off<br/>1. Spkr on/off<br/>2. Turbo on/off<br/>3. Spare on/off reg<br/>4. PIT Ch0 output /2<br/>5. PIT Ch2 output<br/>6. Always 0<br/>7. Always 0 |
 | 0x070-071 | 0 0 0 1 1 1 0 0 0 A0 | RTC/NVRAM address DS12885 |
 | 0x0C0 | 0 0 1 1 0 0 0 0 0 0 | SN76494 PCjr / Tandy 3-Voice Sound |
 | 0x080- 0x09F | 0 0 1 0 0 X X X X X | POST BIOS Code Register (add-on) - aliases to 0x09F |
