@@ -42,12 +42,9 @@ Single board, integrated 8088 PC based on the Xi 8088.
 | 0x070-071 | 0 0 \| 0 1 1 1 \| 0 0 0 A0 | RTC/NVRAM address DS12885 |
 | 0x0C0 | 0 0 \| 1 1 0 0 \| 0 0 0 0 | SN76494 PCjr / Tandy 3-Voice Sound |
 | 0x080- 0x09F | 0 0 \| 1 0 0 X \| X X X X | POST BIOS Code Register (add-on) - aliases to 0x09F |
-| 0x300-31F | 1 1 \| 0 0 0 0 \| A3 A2 A1 X
-1 1 \| 0 0 0 1 \| A3 A2 A1 X | CF HDD (0x300 CS1, 0x310 CS2) |
+| 0x300-31F | 1 1 \| 0 0 0 X \| A3 A2 A1 X | CF HDD (0x300 CS1, 0x310 CS2) |
 | 0x388 | 1 1 \| 1 0 0 0 \| 1 0 0 0 | Adlib OLP2 |
-| 0x3B0-0x3DF | 1 1 \| 1 0 1 1 \| A3 A2 A1 A0
-1 1 \| 1 1 0 0 \| A3 A2 A1 A0
-1 1 \| 1 1 0 1 \| A3 A2 A1 A0 | EGA Graphics (Reserved) |
+| 0x3B0-0x3DF | 1 1 \| 1 0 1 1 \| A3 A2 A1 A0<br/>1 1 \| 1 1 0 0 \| A3 A2 A1 A0<br/>1 1 \| 1 1 0 1 \| A3 A2 A1 A0 | EGA Graphics (Reserved) |
 | 0x3F0-3F7 | 1 1 \| 1 1 1 1 \| 0 0 A1 A0 | Floppy DIsc Controller FDC |
 | 0x3F8 | 1 1 \| 1 1 1 1 \| 1 0 0 0 | Serial Port (COM1) |
 
