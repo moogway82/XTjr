@@ -59,7 +59,56 @@ Single board, integrated 8088 PC based on the Xi 8088.
 | 0xF0000 - 0xFFFFF | 1 1 0 0 - 1 1 1 1 | 64 KB | ROM - BIOS and Extensions | |
 
 
+## BIOS
 
+Forked from Serge's excellent [8088_bios](https://github.com/skiselev/8088_bios) used on the Micro8088, Xi8088 and NuXT. Tried to gracefully add support for the XTjr without breaking the other systems. Main features added:
+
+- XTjr configuration
+- DMAC optional
+- PS/2 Mouse allowed with only 1 PIC using IRQ7
+- PIO Floppy support
+- SN76496 support (silence it on boot)
+
+
+## Wait State Generator
+
+Inserts a selectable 1 or 4 WS for each IO Read/Write and Memory Read/Write to AXXXXh & BXXXXh addresses to allow for slower EGA cards at Turbo speeds.
+
+## Ports
+
+- PS/2 Keyboard (internal pin headers also available - don't use both!)
+- PS/2 Mouse
+- 5V 2.1mm Barrel socket or ATX for Power
+- Standard Floppy Connector
+- RS232 Serial
+- 1x ISA Slot
+- 3.5mm Audio Jack for PC Speaker, SN76496 & YM3812 Audio
+- 1x ISA Edge Connector
+- Compact Flash Card socket
+
+## ISA Bus Changes
+
+The ISA is mostly complete, it's just missing non-5V power, DMA signals, most IRQs and IO Check (NMI flag).
+
+The following signals are missing:
+
+- -12V
+- +12V
+- -5V
+- DRQ 1
+- DRQ 2
+- DRQ 3
+- DACK 1
+- DACK 2
+- DACK 3
+- TC
+- IRQ 2
+- IRQ 3
+- IRQ 5
+- IRQ 6
+- AEN (pin grounded)
+- I/O Check
+- Refresh>
 
 
 
