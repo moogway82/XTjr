@@ -1,6 +1,6 @@
 # XTjr
 
-Single board, integrated 8088 PC based on the Xi 8088.
+Single board, integrated 8088 PC based on the [Xi 8088](http://www.malinov.com/Home/sergeys-projects/xi-8088).
 
 ## Specifications
 
@@ -108,7 +108,7 @@ The following signals are missing:
 - IRQ 6
 - AEN (pin grounded)
 - I/O Check
-- Refresh>
+- Refresh
 
 
 
