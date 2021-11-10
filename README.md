@@ -113,6 +113,10 @@ The missing signals/power are:
 
 All others are present.
 
+## Form Factor
+
+The PCB is 440mm x 140mm (with a 7.62mm edge connector protruding from the rear). This is not based on any standard, but chosen by me to fit nicely under a random HP PS/2 keyboard I found on eBay - sorry ;)
+
 ## Details and Main Changes from the Xi8088 & Integrated ISA Cards
 
 On the main Xi8088 board I did a stripping out job to give the simplest PC that would run older games. I removed optional 'advanced' features that were not strictly required, this is where the 'jr' part of the XTjr name comes from. In integrating the functionality from several or Sergey's ISA cards I removed their address decoding logic and buffering, set a lot of the IO addresses and IRQs so they were no longer selectable and could reuse logic chips where gates were spare. All this does make it more fixed-spec and much less configurable than a PC, but that's just what old 80's micros were like.
@@ -155,9 +159,10 @@ My mixer is very basic using resisters instead of op-amps.
 
 The XTjr can take a standard ATX power connector with a 'soft' power switch. Or you can just use a simple 5V 2.1mm barrel jack and a 'hard' power switch, both options work fine but the simple 'hard' barrel jack is easier (and more Micro-like).
 
-## Form Factor
+### Floppy Disc Controller
 
-The PCB is 440mm x 140mm (with a 7.62mm edge connector protruding from the rear). This is not based on any standard, but chosen by me to fit nicely under a random HP PS/2 keyboard I found on eBay - sorry ;)
+I chose to use the SMSC/Microchip FDC37C78-HT for the FDC as when I started building this they could still be purchase new, were quite cheap and I had a couple left over from a previous project. However they are now obsolete and actually quite hard to find for a reasonable price so I will update the design to use the more common 8477AA and clones that Serge used on his Floppy Card.
+
 
 
 
