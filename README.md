@@ -1,11 +1,12 @@
 # XTjr
 
 Single board, integrated 8088 PC based on the [Xi 8088](http://www.malinov.com/Home/sergeys-projects/xi-8088). The objective was to
-try and create a PC which was more like the 80s Microcomputers at the time with integrated features and small size.
+try and create a PC which was more like an 80s Microcomputers with integrated features, compact size and cheaper. This is a bit like
+my reimagining of the PCjr, hence XTjr.
 
 ## Specifications
 
-- 8088 CPU with Turbo clock speeds (8/10/13.3 MHz) running in Minimal Mode
+- 8088 CPU with Turbo clock speeds (8/10MHz) running in Minimal Mode
 - 1MB RAM on board, giving full 640kB + UMBs
 - Yamaha YM3812 (Adlib) & SN76496 (PCjr/Tandy) sound
 - 1 Limited ISA Card Slot for Graphics
@@ -70,7 +71,6 @@ Forked from Serge's excellent [8088_bios](https://github.com/skiselev/8088_bios)
 - PIO Floppy support
 - SN76496 support (silence it on boot)
 
-
 ## Wait State Generator
 
 Inserts a selectable 1 or 4 WS for each IO Read/Write and Memory Read/Write to AXXXXh & BXXXXh addresses to allow for slower EGA cards at Turbo speeds.
@@ -89,7 +89,7 @@ Inserts a selectable 1 or 4 WS for each IO Read/Write and Memory Read/Write to A
 
 ## ISA Bus Changes
 
-The ISA bus is missing some signals and power becuase there is no DMAC (or support for an external one), most interrupts are taken and power is 5V only.
+The ISA bus, available on the single ISA Slot or the Edge connector on the back, is missing some signals and power becuase there is no DMAC (or support for an external one), most interrupts are taken and power is 5V only. The ISA Slot was primarily designed to support a CGA/EGA graphics card so has all the signals to support that, the edge connector just copies the signals on that slot.
 
 The missing signals/power are:
 
@@ -111,12 +111,13 @@ The missing signals/power are:
 - I/O Check
 - Refresh
 
+All others are present.
 
-## Main Changes from the Xi8088
+## Details and Main Changes from the Xi8088 & Integrated ISA Cards
 
-### Minimal Mode, no-FPU, no-DMA, and 1 PIC
+On the main Xi8088 board I did a stripping out job to give the simplest PC that would run older games. I removed optional 'advanced' features that were not strictly required, this is where the 'jr' part of the XTjr name comes from. In integrating the functionality from several or Sergey's ISA cards I removed their address decoding logic and buffering, set a lot of the IO addresses and IRQs so they were no longer selectable and could reuse logic chips where gates were spare. All this does make it more fixed-spec and much less configurable than a PC, but that's just what old 80's micros were like.
 
-I did a stripping out job to give the simplest PC that would run older games. So I removed many advanced features that were not strictly required, this is where the 'jr' part of the XTjr name comes from.
+### CPU Minimal Mode, no-FPU, no-DMA, and 1 PIC
 
 Running the CPU in Minimal mode meant losing the 8288 bus control chip as the bus is driven directly from the CPU. However, as this chip is required to work with an FPU, that is no longer possible. I also had to figure out how to convert the IO/M, RD and WR signals to IOR, IOW, MEMR and MEMW, which became one of the uses for the ATF16V8 SPLD.
 
@@ -126,7 +127,7 @@ As the XTjr comes with most of the basic features you need as standard, I remove
 
 ### Chip Selection Logic
 
-This is expanded to  provide enable signals to the extra integrated peripherals and saved the need for each one to have it's own address decoder.
+This is expanded to provide enable signals to the extra integrated peripherals and saved the need for each one to have it's own address decoder.
 
 ### Wait State Generator
 
@@ -140,13 +141,23 @@ In my drive to reduce chips, I changed from 2 512kB RAM chips to 1 1MB chip, but
 
 I also changed the ROM ordering to keep it simpler too, no inverting of A16, so the BIOS is loaded in at the end of the ROM, not the start as it is on the Xi8088.
 
-### Additional Bus Buffers
+### No Additional Bus Buffers
 
 There is a single Data, Address and Control Bus on the XTjr, all driven by 1 set of buffers fed from the CPU. XTjr had XDx and XAx buses to drive the integrated devices and kept the Dx and Ax bues to drive the Memory and Expansion Slots. As I only had a single ISA slot I did without these buffers. I also copied the wiring for the PIC from the 5150 and PCjr in that it is wired directly to the CPUs multiplexed Address and Data bus and this seems to work fine and took 1 chip off the main data bus. The buffers get quite warm, but they seems to manage without too much stress. Higher clock speeds may start to struggle with propgation delays, but 10MHz seems stable.
 
+### YM3812 OPL2 (Adlib) & SN76496 Tandy/PCjr sound
 
+I deviated away a lot in the amplication and filtering part of Serge's [ISA OPL2 Card](http://www.malinov.com/Home/sergeys-projects/isa-opl2-card) to save some components and get away from any amps that required 12V. So I copied an example circuit from the TPA711D datasheet and went with that. Seems to work ok, but I suspect it will not sound as good as a real Adlib card and can be a bit noisy, but the sound from Micros was never the best anyway.
 
+My mixer is very basic using resisters instead of op-amps. 
 
+### Power Supply
+
+The XTjr can take a standard ATX power connector with a 'soft' power switch. Or you can just use a simple 5V 2.1mm barrel jack and a 'hard' power switch, both options work fine but the simple 'hard' barrel jack is easier (and more Micro-like).
+
+## Form Factor
+
+The PCB is 440mm x 140mm (with a 7.62mm edge connector protruding from the rear). This is not based on any standard, but chosen by me to fit nicely under a random HP PS/2 keyboard I found on eBay - sorry ;)
 
 
 
