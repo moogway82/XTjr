@@ -163,8 +163,19 @@ The XTjr can take a standard ATX power connector with a 'soft' power switch. Or 
 
 I chose to use the SMSC/Microchip FDC37C78-HT for the FDC as when I started building this they could still be purchase new, were quite cheap and I had a couple left over from a previous project. However they are now obsolete and actually quite hard to find for a reasonable price so I will update the design to use the more common 8477AA and clones that Serge used on his Floppy Card.
 
+## Issues / New Features
 
+### Crashes in CGA mode of Price of Persia
 
+I think this might be to do with the Wait States inserted into 0xA0000-0xBFFFF memory read/writes and seems to affect it on 4.77MHz or 10MHz turbo. I also had swapped all the RAM on my EGA card, so that could be the problem too, need to test more. Adlib Jukebox also doing weird things and it's CGA also. Not done much in CGA mode, tested using EGA modes more.
+
+### Can only Read Floppies
+
+Have not implemented PIO Writing, Formatting or Verifying routines in the BIOS yet - they either error out or do nothing at present and DOS shows a disk error. Just need to find time to implement and at the moment I can enjoy loading from floppies, I can make disks using Greaseweasel at the moment.
+
+### Make a Joystick Edge connecting adapter
+
+Have the joystick, parts on order and a plan for a very basic adapter (2 ICs - an NE556 and ATF16V8) to support a single joystick...
 
 
 
