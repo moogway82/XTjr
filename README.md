@@ -1,21 +1,22 @@
 # XTjr
 
-Single board, integrated 8088 PC based on the [Xi 8088](http://www.malinov.com/Home/sergeys-projects/xi-8088).
+Single board, integrated 8088 PC based on the [Xi 8088](http://www.malinov.com/Home/sergeys-projects/xi-8088). The objective was to
+try and create a PC which was more like the 80s Microcomputers at the time with integrated features and small size.
 
 ## Specifications
 
-- 8088 with Turbo clock speeds (8/10/13.3 MHz) running in Minimal Mode
+- 8088 CPU with Turbo clock speeds (8/10/13.3 MHz) running in Minimal Mode
 - 1MB RAM on board, giving full 640kB + UMBs
-- Yamaha YM3812 (Adlib) & SN76496 (PCjr/Tandy)
-- 1 Limted ISA Card Slot for Graphics
+- Yamaha YM3812 (Adlib) & SN76496 (PCjr/Tandy) sound
+- 1 Limited ISA Card Slot for Graphics
 - 1 Limited ISA Compatible Edge Connector
-- Floppy Disk Controller
-- Compact Flash
+- Floppy Disk Interface
+- Compact Flash Slot
 - RS232 Serial Port
 - PS/2 Keyboard and Mouse
-- No DMA
-- 8 IRQs on a Single Programmable Interrupt Controller (no NMI)
+- 8 IRQs on a Single Programmable Interrupt Controller & no NMI support
 - No FPU
+- No DMA support
 - 5V only supply
 
 ## IRQs
@@ -88,9 +89,9 @@ Inserts a selectable 1 or 4 WS for each IO Read/Write and Memory Read/Write to A
 
 ## ISA Bus Changes
 
-The ISA is mostly complete, it's just missing non-5V power, DMA signals, most IRQs and IO Check (NMI flag).
+The ISA bus is missing some signals and power becuase there is no DMAC (or support for an external one), most interrupts are taken and power is 5V only.
 
-The following signals are missing:
+The missing signals/power are:
 
 - -12V
 - +12V
@@ -109,6 +110,41 @@ The following signals are missing:
 - IRQ 6
 - I/O Check
 - Refresh
+
+
+## Main Changes from the Xi8088
+
+### Minimal Mode, no-FPU, no-DMA, and 1 PIC
+
+I did a stripping out job to give the simplest PC that would run older games. So I removed many advanced features that were not strictly required, this is where the 'jr' part of the XTjr name comes from.
+
+Running the CPU in Minimal mode meant losing the 8288 bus control chip as the bus is driven directly from the CPU. However, as this chip is required to work with an FPU, that is no longer possible. I also had to figure out how to convert the IO/M, RD and WR signals to IOR, IOW, MEMR and MEMW, which became one of the uses for the ATF16V8 SPLD.
+
+DMA would only have normally been used by the Floppy Disk Controller (FDC), unless an expansion needed it, so I just removed that as it is possible to change the BIOS code to use the FDC with interrupts and polling only. This did a lot to simplify the hardware, even if it did make the BIOS routines for Floppy access more complicated.
+
+As the XTjr comes with most of the basic features you need as standard, I removed the 2nd PIC so that we only have 8 IRQs. This only leaves IRQ 7 as switchable between the PS/2 Mouse and the expansion slot/port. Also, as we have a PS/2 mouse port but no IRQ12 this raises some issues as IRQ12 is usually assumed to be for the PS/2 Mouse. I have only had success using CuteMouse 1.9 which supports EGA and uses BIOS to handle PS/2 mouse interrupts which I can set to use IRQ7. Also, DOS tries to handle IRQ7 so I had to write a small utility to restore the handler back to BIOS after boot, which can be placed into autoexec.bat.
+
+### Chip Selection Logic
+
+This is expanded to  provide enable signals to the extra integrated peripherals and saved the need for each one to have it's own address decoder.
+
+### Wait State Generator
+
+Added a reset to the wait state counter as it would keep counting to 4 even if a smaller number was selected, which might've caused it to provide a incorrect number of wait states when requested.
+
+It will also provide a wait state for accesses to Memory at 0xA0000 - 0xBFFFF. This seems to help accessing slower EGA Graphics cards at the faster CPU speeds.
+
+### 1MB RAM, ROM order and Memory select logic
+
+In my drive to reduce chips, I changed from 2 512kB RAM chips to 1 1MB chip, but I could only get 1MB SRAM in SMD packages, so does make it a little tricker to assemble. But it's not as hard to solder as the Compact Flash slot and they don't come in through hole, so SMD soldering was essential anyway. I also had to change the RAM select logic to handle a sinlge chip but I still wanted to specify UMB ranges. I decided that a SPLD (PAL) would be the simplest and most flexible way to provide custom ranges to map above 0x9FFFF between RAM and ROM. Spare capacity of the SPLD was used to generate the MEMR, MEMW, IOR, IOW and Port B Reading and Writing signals.
+
+I also changed the ROM ordering to keep it simpler too, no inverting of A16, so the BIOS is loaded in at the end of the ROM, not the start as it is on the Xi8088.
+
+### Additional Bus Buffers
+
+There is a single Data, Address and Control Bus on the XTjr, all driven by 1 set of buffers fed from the CPU. XTjr had XDx and XAx buses to drive the integrated devices and kept the Dx and Ax bues to drive the Memory and Expansion Slots. As I only had a single ISA slot I did without these buffers. I also copied the wiring for the PIC from the 5150 and PCjr in that it is wired directly to the CPUs multiplexed Address and Data bus and this seems to work fine and took 1 chip off the main data bus. The buffers get quite warm, but they seems to manage without too much stress. Higher clock speeds may start to struggle with propgation delays, but 10MHz seems stable.
+
+
 
 
 
