@@ -1,0 +1,25 @@
+
+
+ Pin # | Name     | Pin Type
+-----------------------------
+   1   | PORTBCS  | Input
+   2   | A15      | Input
+   3   | A16      | Input
+   4   | A17      | Input
+   5   | A18      | Input
+   6   | A19      | Input
+   7   | IOM      | Input
+   8   | RD       | Input
+   9   | WR       | Input
+  10   | GND      | GND
+  11   | EXTROMSW | Input
+  12   | ROMCS    | Output
+  13   | RAMCS    | Output
+  14   | PORTBR   | Output
+  15   | PORTBW   | Output
+  16   | MEMR     | Output
+  17   | MEMW     | Output
+  18   | IOR      | Output
+  19   | IOW      | Output
+  20   | VCC      | VCC
+

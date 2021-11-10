@@ -1,0 +1,66 @@
+GAL16V8		; The GAL Type (can be GAL16V8, GAL20V8, GAL22V10, GAL20RA10
+XjMCSv1		; Signature (8 chars): XTjr Memory Chip Selection logic v1
+
+;	1			2		3		4		5		6		7		8	9	10
+	PORTBCS		A15		A16		A17		A18		A19		IOM		RD	WR	GND 	; Pins 1-10
+	EXTROMSW	ROMCS	RAMCS	PORTBR 	PORTBW	MEMR	MEMW	IOR	IOW	VCC		; Pins 11-20
+;	11			12		13		14		15		16		17		18	19	20
+
+
+; 1. RAM and ROM Chip Selection Logic
+; ------------------------------------
+
+/ROMCS =  /IOM * A16 * A17 * A18 * A19 				; Select ROM when IOM low AND A16-19 high [0xF0.. - 0xFF..]
+ 		+ EXTROMSW * /IOM * A19 * A18 * A17 * /A16 	; OR Select ROM when IOM low AND [0xE0.. - 0xEF..]
+
+/RAMCS =  /IOM * /A19 								; Select RAM when IOM low AND A19 low [0x00.. - 0x7F..]
+		+ /IOM * A19 * /A18 * /A17 					; OR Select RAM when IOM low AND A19 HIGH with A18 and A17 Low [0x80.. - 0x9F..]
+;todo	+ /IOM * A19 * A18 * /A17 * /A16 * A15		; OR Select RAM when IOM low AND [0xC8.. - 0xCF..]
+;todo	+ /IOM * A19 * A18 * /A17 * A16				; OR Select RAM when IOM low AND [0xD0.. - 0xDF..]
+ 		+ /EXTROMSW * /IOM * A19 * A18 * A17 * /A16 ; OR Select RAM when IOM low AND [0xE0.. - 0xEF..]
+
+
+; 2. IO & Mem Read & Write Decoding
+; ----------------------------------
+
+/MEMR = /IOM * /RD 	; Memory Read when IOM low and RD low
+/MEMW = /IOM * /WR	; Memory Write when IOM low and WR low
+/IOR  = IOM * /RD 	; IO Read when IOR high and RD low
+/IOW  = IOM * /WR 	; IO Write whe IOR high and WR low
+
+
+; 3. PORT B Read & Write Selection
+; ---------------------------------
+
+/PORTBR = /PORTBCS * IOM * /RD 	; PORTBR low when PORTB_CS low AND IOR low
+/PORTBW = /PORTBCS * IOM * /WR	; PORTBR low when PORTB_CS low AND IOW low
+
+
+DESCRIPTION:
+
+Various simple logic for the XTjr 8088 SBC
+==========================================
+
+1. RAM and ROM Chip Selection Logic
+------------------------------------
+Used to map available memory for the single 1MB SRAM Chip:
+ - 0x00.. - 0x7F..
+ - 0x80.. - 0x9F..
+
+ROM Extension range 0xE0.. - 0xEF.. is set to RAM or ROM depending on EXTROMSW (pin 11):
+ - EXTROMSW is HIGH then 0xE0.. - 0xEF.. = ROM (use all of 128KB of ROM chip)
+ - EXTROMSW is LOW then 0xE0.. - 0xEF.. = RAM
+
+Todo: 
+ - Determine if ranges 0xC8.. - 0xCF.. and 0xD0.. - 0xDF.. should also be for RAM 
+
+
+2. IO & Mem Read & Write Decoding
+----------------------------------
+Replaces OR ind INV gates to decode nMEMR, nMEMW, nIOR and nIOW from nIOR, nWR and nRD lines from CPU
+
+
+3. PORT B Read & Write Selection
+---------------------------------
+Replaces a couple of OR gates to decode nPORTBR and nPORTBW lines.
+
