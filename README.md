@@ -75,7 +75,7 @@ Forked from Serge's excellent [8088_bios](https://github.com/skiselev/8088_bios)
 - PIO Floppy support
 - SN76496 support (silence it on boot)
 
-[I will updload the fork of the 8088_bios I'm using soon once I have the code tidied up...]
+[I will updload my fork of the 8088_bios I'm using soon once I have the code tidied up...]
 
 ## Wait State Generator
 
@@ -89,8 +89,8 @@ Inserts a selectable 1 or 4 WS for each IO Read/Write and Memory Read/Write to A
 - Standard Floppy Connector
 - RS232 Serial
 - 1x ISA Slot
-- 3.5mm Audio Jack for PC Speaker, SN76496 & YM3812 Audio
-- 1x ISA Edge Connector
+- 3.5mm Audio Jack for PC Speaker, SN76496 & YM3812 Audio Out
+- 1x Limited ISA Edge Connector
 - Compact Flash Card socket
 
 ## ISA Bus Changes
