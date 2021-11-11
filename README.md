@@ -120,22 +120,22 @@ All others are present.
 ## Jumpers and Headers
 
 ### J1 - Reset switch
-Header pins for momentary switch
+Header pins for momentary reset switch
 
 ### J2 - Turbo switch / jumper
-none: Turbo off
-1-2: Turbo always on
-2-3: Turbo controlled by Port 61h bit 2 (recommended)
+- none: Turbo off
+- 1-2: Turbo always on
+- 2-3: Turbo controlled by Port 61h bit 2 (recommended)
 
 ### J3 - IRQ 7: Bus or PS/2 Mouse
-1-2: IRQ7 is PS/2 mouse interrupt - connected to the keyboard controller
-2-3: IRQ7 is connected to the ISA bus
+- 1-2: IRQ7 is PS/2 mouse interrupt - connected to the keyboard controller
+- 2-3: IRQ7 is connected to the ISA bus
 
 ### J4 - Speaker
-1 - PC Speaker sound signal out
-2 - On-board speaker input
-3 - Ground
-4 - +5V
+- 1: PC Speaker sound signal out
+- 2: On-board speaker input
+- 3: Ground
+- 4: +5V
 
 To enable the on-board speaker connect a jumper across pins 1-2 to route the PC Speaker sound signal out to the on-board speaker input. The PC Speaker data is also routed to the SN76496 sound chip so will also be heard on the external audio out.
 
@@ -146,24 +146,24 @@ Standard ATX power connector - only +5V lines are used (including the stand-by +
 Momentary switch for using the ATX soft power option
 
 ### J7 - CGA / MDA Graphics
-none: CGA Graphics is to be used 
-1-2: MDA Graphics is to be used 
+- none: CGA Graphics is to be used 
+- 1-2: MDA Graphics is to be used 
 
 Only for CGA/MDA graphics adapters
 
 ### J8 - IO and Video Memory Wait States
-1-2: 1 Wait State
-2-3: 2 Wait States
-3-4: 3 Wait States
-4-5: 4 Wait States
+- 1-2: 1 Wait State
+- 2-3: 2 Wait States
+- 3-4: 3 Wait States
+- 4-5: 4 Wait States
 
 ### J9 - Address range 0xE0000 - 0xEFFFF: Map to ROM or RAM
-1-2: Mapped to RAM (for UMBs - default)
-2-3: Mapped to ROM (for extension ROMs)
+- 1-2: Mapped to RAM (for UMBs - default)
+- 2-3: Mapped to ROM (for extension ROMs)
 
 ### J12 - Compact Flash LED Header
-1: +5V
-2: GND
+- 1: +5V
+- 2: GND
 
 ### J13 - Chip Select Signal for POST codes
 Pin will go high (+5V) when port 0x80 selected. Useful to pick up POST codes on the databus via a Logic Analyser.
@@ -172,22 +172,22 @@ Pin will go high (+5V) when port 0x80 selected. Useful to pick up POST codes on 
 Toggle switch, should be rated above 2Amps
 
 ### J16 - Floppy Drive power connector
-1: +5V
-2: GND
-3: GND
-4: Not connected
+- 1: +5V
+- 2: GND
+- 3: GND
+= 4: Not connected
 
 ### P3 - DIN Socket Connector
-1: +5V
-2: GND
+- 1: +5V
+- 2: GND
 
 ### P4 - Turbo LED Header
 1: +5V
 2: GND
 
 ### P5 - Power LED Header
-1: +5V
-2: GND
+- 1: +5V
+- 2: GND
 
 ## Form Factor
 
