@@ -241,7 +241,7 @@ I chose to use the SMSC/Microchip FDC37C78-HT for the FDC as when I started buil
 
 ## The PCB
 
-This is still a WIP - v1 shown in the images above had a lot of issues and missing features, so I'm working on a v2 at the moment. Drop me a tweet at @mogwaay if you're interested in getting one once they are ready.
+This is still a WIP. v1 as shown in the images above had a lot of issues and some missing features, you can see the amount of bodge wires and daughterboards on it. I'm working on a v2 at the moment to address these. Once it's ready and tested, I'm hoping to have these for sale somewhere if anyone wants to make their own XTjr and will update that page once it's ready. Feel free to contact me on Twitter at [@mogwaay](https://twitter.com/mogwaay) if you're interested or have any questions.
 
 
 ## Issues / New Features
@@ -259,8 +259,9 @@ Have not implemented PIO Writing, Formatting or Verifying routines in the BIOS y
 Have the joystick, parts on order and a plan for a very basic adapter (2 ICs - an NE556 and ATF16V8) to support a single joystick...
 
 
+## Wee Disclaimer
 
-
+I'm just a hobbist with no background in Electrical Engineering, there may be issues with this design that I am unaware of and I take no responsibility for any damage caused in trying to build or use your own XTjr. This is just a bit of fun for me and I'm sharing it for anyone else who likes to tinker responsibly with Retro computing.
 
 
 
