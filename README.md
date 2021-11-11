@@ -239,6 +239,11 @@ The XTjr can take a standard ATX power connector with a 'soft' power switch. Or 
 
 I chose to use the SMSC/Microchip FDC37C78-HT for the FDC as when I started building this they could still be purchase new, were quite cheap and I had a couple left over from a previous project. However they are now obsolete and actually quite hard to find for a reasonable price so I will update the design to use the more common 8477AA and clones that Serge used on his Floppy Card.
 
+## The PCB
+
+This is still a WIP - v1 shown in the images above had a lot of issues and missing features, so I'm working on a v2 at the moment. Drop me a tweet at @mogwaay if you're interested in getting one once they are ready.
+
+
 ## Issues / New Features
 
 ### Crashes in CGA mode of Price of Persia
