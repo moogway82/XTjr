@@ -1,7 +1,7 @@
 # XTjr
 
 Single board, integrated 8088 PC based on the [Xi 8088](http://www.malinov.com/Home/sergeys-projects/xi-8088). The objective was to
-try and create a PC which was more like an 80s Microcomputers with integrated features, compact size and cheaper. This is a bit like
+try and create a PC which was more like an 80s Microcomputers with integrated features, compact size and low cost. This is a bit like
 my reimagining of the PCjr, hence XTjr.
 
 ![My son having a peek inside the XTjr](/images/xtjr-inside.jpg)
@@ -10,7 +10,7 @@ my reimagining of the PCjr, hence XTjr.
 
 ## Specifications
 
-- 8088 CPU with Turbo clock speeds (8/10MHz) running in Minimal Mode
+- 8088 CPU at 4.77Mhz with optional Turbo clock speeds (8/10MHz), running in Minimal Mode
 - 1MB RAM on board, giving full 640kB + UMBs
 - Yamaha YM3812 (Adlib) & SN76496 (PCjr/Tandy) sound
 - 1 Limited ISA Card Slot for Graphics
@@ -118,6 +118,8 @@ The missing signals/power are:
 All others are present.
 
 ## Jumpers and Headers
+
+Sorry, my designation letters and numbers are a mess here, but they do identify the thing they identify :)
 
 ### J1 - Reset switch
 Header pins for momentary reset switch
