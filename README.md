@@ -75,6 +75,8 @@ Forked from Serge's excellent [8088_bios](https://github.com/skiselev/8088_bios)
 - PIO Floppy support
 - SN76496 support (silence it on boot)
 
+[I will updload the fork of the 8088_bios I'm using soon once I have the code tidied up...]
+
 ## Wait State Generator
 
 Inserts a selectable 1 or 4 WS for each IO Read/Write and Memory Read/Write to AXXXXh & BXXXXh addresses to allow for slower EGA cards at Turbo speeds.
