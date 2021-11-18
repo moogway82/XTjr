@@ -258,9 +258,11 @@ I think this might be to do with the Wait States inserted into 0xA0000-0xBFFFF m
 
 Have not implemented PIO Writing, Formatting or Verifying routines in the BIOS yet - they either error out or do nothing at present and DOS shows a disk error. Just need to find time to implement and at the moment I can enjoy loading from floppies, I can make disks using Greaseweasel at the moment.
 
-### Make a Joystick Edge connecting adapter
+## Single Joystick Gameport Expansion
 
-Have the joystick, parts on order and a plan for a very basic adapter (2 ICs - an NE556 and ATF16V8) to support a single joystick...
+I've made a Simple, Single Joystick Gameport Expansion board which an be found in the [joystick](/joystick) directory. It uses only 2 ICs, but one of them is a SPLD which needs to be programmed with something like the TL866. It only supports 1 joystick as only 4 of the data lines are accessed and the TLC556 only has enough 2 timers 1 set of X and Y axis. It responds top IO addresses from 0x200 to 0x207. It is designed to have a 62 pin socket attached so that it can connect to the edge connector on the back of the XTjr - it *might* also work inserted into a standard ISA slot, but I didn't design the PCB for that so would probably need reworking to fit properly.
+
+![Render of the joystick expansion](/joystick/3D-OneJoy-PCB-render.jpg)
 
 
 ## Wee Disclaimer
