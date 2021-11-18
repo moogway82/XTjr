@@ -1,0 +1,33 @@
+GAL16V8		; The GAL Type (can be GAL16V8, GAL20V8, GAL22V10, GAL20RA10
+OneJoy		; Signature (8 chars): Simple single joystick logic
+
+;	1		2		3		4		5		6		7		8		9		10
+	A9		A8		A7		A6		JAX		JAY		JAB1	JAB2	IOW		GND 	; Pins 1-10
+	IOR		D0		D1		D4 		D5		AEN		A5		A4		FIRE	VCC		; Pins 11-20
+;	11		12		13		14		15		16		17		18		19		20
+
+
+D0.T = JAX
+
+D0.E = A9 * /A8 * /A7 * /A6 * /A5 * /A4 * /IOR * /AEN
+
+D1.T = JAY
+
+D1.E = A9 * /A8 * /A7 * /A6 * /A5 * /A4 * /IOR * /AEN
+
+D4.T = JAB1
+
+D4.E = A9 * /A8 * /A7 * /A6 * /A5 * /A4 * /IOR * /AEN
+
+D5.T = JAB2
+D5.E = A9 * /A8 * /A7 * /A6 * /A5 * /A4 * /IOR * /AEN
+
+/FIRE = A9 * /A8 * /A7 * /A6 * /A5 * /A4 * /IOW * /AEN
+
+
+DESCRIPTION:
+
+A very basic implementation of a gameport that supports a single joystick. 
+D2, D3 and D6 and D7 are left floating as they are for Joystick B and I don't have enough pins to give it null values.
+Fire is active low and will arm the 556 timer.
+556 used as the 558 is now obsolete.

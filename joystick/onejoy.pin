@@ -1,0 +1,25 @@
+
+
+ Pin # | Name     | Pin Type
+-----------------------------
+   1   | A9       | Input
+   2   | A8       | Input
+   3   | A7       | Input
+   4   | A6       | Input
+   5   | JAX      | Input
+   6   | JAY      | Input
+   7   | JAB1     | Input
+   8   | JAB2     | Input
+   9   | IOW      | Input
+  10   | GND      | GND
+  11   | IOR      | Input
+  12   | D0       | Output
+  13   | D1       | Output
+  14   | D4       | Output
+  15   | D5       | Output
+  16   | AEN      | Input
+  17   | A5       | Input
+  18   | A4       | Input
+  19   | FIRE     | Output
+  20   | VCC      | VCC
+
