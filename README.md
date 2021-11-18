@@ -264,6 +264,8 @@ I've made a Simple, Single Joystick Gameport Expansion board which an be found i
 
 ![Render of the joystick expansion](/joystick/3D-OneJoy-PCB-render.jpg)
 
+The EasyEDA schamtics and PCB design are also in the [joystick](/joystick) directory if you anyone would like to take it and customise the PCB to make an ISA card version.
+
 
 ## Wee Disclaimer
 
