@@ -22,7 +22,7 @@ my reimagining of the PCjr, hence XTjr.
 - 8 IRQs on a Single Programmable Interrupt Controller & no NMI support
 - No FPU
 - No DMA support
-- 5V only supply
+- 5V DIN or ATX Power Supplies
 
 ## IRQs
 
@@ -44,7 +44,7 @@ my reimagining of the PCjr, hence XTjr.
 | 0x020-021 | 0 0 \| 0 0 1 0 \| 0 0 0 A0 | PIC 8259A |
 | 0x040-043 | 0 0 \| 0 1 0 0 \| 0 0 A1 A0 | PIT 8254 |
 | 0x060, 0x064 | 0 0 \| 0 1 1 0 \| 0 A2 0 0 | Keyboard/Mouse Controller 8242 |
-| 0x061 | 0 0 \| 0 1 1 0 \| 0 0 0 1 | Port B (Speaker, Turbo)<br/>0. PIT Ch2 on/off<br/>1. Spkr on/off<br/>2. Turbo on/off<br/>3. Spare on/off reg<br/>4. PIT Ch0 output /2<br/>5. PIT Ch2 output<br/>6. Always 0<br/>7. Always 0 |
+| 0x061 | 0 0 \| 0 1 1 0 \| 0 0 0 1 | Port B (Speaker, Turbo)<br/>0. PIT Ch2 on/off<br/>1. Spkr on/off<br/>2. Turbo on/off<br/>3. 1 bit GPIO/Cassette<br/>4. PIT Ch0 output /2<br/>5. PIT Ch2 output<br/>6. Always 0<br/>7. Always 0 |
 | 0x070-071 | 0 0 \| 0 1 1 1 \| 0 0 0 A0 | RTC/NVRAM address DS12885 |
 | 0x0C0 | 0 0 \| 1 1 0 0 \| 0 0 0 0 | SN76494 PCjr / Tandy 3-Voice Sound |
 | 0x080- 0x09F | 0 0 \| 1 0 0 X \| X X X X | POST BIOS Code Register (add-on) - aliases to 0x09F |
@@ -88,7 +88,7 @@ Inserts a selectable 1 or 4 WS for each IO Read/Write and Memory Read/Write to A
 - 5V 2.1mm Barrel socket or ATX for Power
 - Standard Floppy Connector
 - RS232 Serial
-- 1x ISA Slot
+- 1x Limited ISA Slot
 - 3.5mm Audio Jack for PC Speaker, SN76496 & YM3812 Audio Out
 - 1x Limited ISA Edge Connector
 - Compact Flash Card socket
@@ -99,8 +99,6 @@ The ISA bus, available on the single ISA Slot or the Edge connector on the back,
 
 The missing signals/power are:
 
-- -12V
-- +12V
 - -5V
 - DRQ 1
 - DRQ 2
@@ -109,13 +107,13 @@ The missing signals/power are:
 - DACK 2
 - DACK 3
 - TC
-- AEN (pin grounded)
+- AEN (grounded)
 - IRQ 2
 - IRQ 3
 - IRQ 5
 - IRQ 6
 - I/O Check
-- Refresh
+- Refresh (pulled high)
 
 All others are present.
 
@@ -250,17 +248,9 @@ This is still a WIP. v1 as shown in the images above had a lot of issues and som
 
 ## Issues / New Features
 
-### Crashes in CGA mode of Price of Persia
-
-I think this might be to do with the Wait States inserted into 0xA0000-0xBFFFF memory read/writes and seems to affect it on 4.77MHz or 10MHz turbo. I also had swapped all the RAM on my EGA card, so that could be the problem too, need to test more. Adlib Jukebox also doing weird things and it's CGA also. Not done much in CGA mode, tested using EGA modes more.
-
 ### Can only Read Floppies
 
 Have not implemented PIO Writing, Formatting or Verifying routines in the BIOS yet - they either error out or do nothing at present and DOS shows a disk error. Just need to find time to implement and at the moment I can enjoy loading from floppies, I can make disks using Greaseweasel at the moment.
-
-### Make a Joystick Edge connecting adapter
-
-Have the joystick, parts on order and a plan for a very basic adapter (2 ICs - an NE556 and ATF16V8) to support a single joystick...
 
 
 ## Wee Disclaimer

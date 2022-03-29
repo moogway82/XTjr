@@ -11,7 +11,7 @@ XjMCSv1		; Signature (8 chars): XTjr Memory Chip Selection logic v1
 ; ------------------------------------
 
 /ROMCS =  /IOM * A16 * A17 * A18 * A19 				; Select ROM when IOM low AND A16-19 high [0xF0.. - 0xFF..]
- 		+ EXTROMSW * /IOM * A19 * A18 * A17 * /A16 	; OR Select ROM when IOM low AND [0xE0.. - 0xEF..]
+; 		+ EXTROMSW * /IOM * A19 * A18 * A17 * /A16 	; OR Select ROM when IOM low AND [0xE0.. - 0xEF..]
 
 /RAMCS =  /IOM * /A19 								; Select RAM when IOM low AND A19 low [0x00.. - 0x7F..]
 		+ /IOM * A19 * /A18 * /A17 					; OR Select RAM when IOM low AND A19 HIGH with A18 and A17 Low [0x80.. - 0x9F..]
