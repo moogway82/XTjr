@@ -253,6 +253,15 @@ This is still a WIP. v1 as shown in the images above had a lot of issues and som
 Have not implemented PIO Writing, Formatting or Verifying routines in the BIOS yet - they either error out or do nothing at present and DOS shows a disk error. Just need to find time to implement and at the moment I can enjoy loading from floppies, I can make disks using Greaseweasel at the moment.
 
 
+## Single Joystick Gameport Expansion
+
+I've made a Simple, Single Joystick Gameport Expansion board which an be found in the [joystick](/joystick) directory. It uses only 2 ICs, but one of them is a SPLD which needs to be programmed with something like the TL866. It only supports 1 joystick as only 4 of the data lines are accessed and the TLC556 only has enough 2 timers 1 set of X and Y axis. It responds top IO addresses from 0x200 to 0x207. It is designed to have a 62 pin socket attached so that it can connect to the edge connector on the back of the XTjr - it wont work as it is in a standard ISA slot as the pins are mirrored, but it could be fairly easily reworking to fit I think. I also added option of header pins so that cand can be used for debugging.
+
+![Render of the joystick expansion](/joystick/3D-OneJoy-PCB-render.jpg)
+
+The EasyEDA schamtics and PCB design are also in the [joystick](/joystick) directory if you anyone would like to take it and customise the PCB to make an ISA card version.
+
+
 ## Wee Disclaimer
 
 I'm just a hobbist with no background in Electrical Engineering, there may be issues with this design that I am unaware of and I take no responsibility for any damage caused in trying to build or use your own XTjr. This is just a bit of fun for me and I'm sharing it for anyone else who likes to tinker responsibly with Retro computing.
