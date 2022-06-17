@@ -61,7 +61,7 @@ my reimagining of the PCjr, hence XTjr.
 | 0x00000 - 0x9FFFF | 0 0 0 0 - 1 0 0 1 | 640 KB | Conventional memory | |
 | 0xA0000 - 0xBFFFF | 1 0 1 0 - 1 0 1 1 | 128 KB | Display memory | EGA: A0000h-AFFFFH (64 KB)<br/>MDA: B8000h-BC000h (16 KB)<br/>CGA: B0000h-B4000h (16 KB) |
 | 0xC0000 - 0xC7FFF | 1 1 0 0 [0] | 32 KB | EGA/VGA ROM | |
-| 0xC8000 - 0xEFFFF | 1 1 0 0 [1] - 1 1 1 0 [1] | 160 KB | Selectable between ROM lower 64KB or RAM (UMB) using J9 | Custom ROM/RAM ranges available by reprogramming SPLD |
+| 0xC8000 - 0xEFFFF | 1 1 0 0 [1] - 1 1 1 0 | 160 KB | Selectable between ROM lower 64KB or RAM (UMB) using J9 | Custom ROM/RAM ranges available by reprogramming SPLD |
 | 0xF0000 - 0xFFFFF | 1 1 0 0 - 1 1 1 1 | 64 KB | ROM - BIOS and Extensions | |
 
 
