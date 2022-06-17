@@ -56,12 +56,12 @@ my reimagining of the PCjr, hence XTjr.
 
 ## Memory Map
 
-| Addr.|Bits: A19 A18 A17 A16|Size|Purpose |Comments |
+| Addr.|Bits: A19 A18 A17 A16 [A15]|Size|Purpose |Comments |
 |------|---------------------|----|--------|---------|
 | 0x00000 - 0x9FFFF | 0 0 0 0 - 1 0 0 1 | 640 KB | Conventional memory | |
 | 0xA0000 - 0xBFFFF | 1 0 1 0 - 1 0 1 1 | 128 KB | Display memory | EGA: A0000h-AFFFFH (64 KB)<br/>MDA: B8000h-BC000h (16 KB)<br/>CGA: B0000h-B4000h (16 KB) |
-| 0xC0000 - 0xDFFFF | 1 1 0 0 - 1 1 0 1 | 192 KB | C0000 - C7FFF is EGA/VGA ROM | |
-| 0xE0000 - 0xEFFFF | 1 1 1 0 | 64 KB | Selectable between ROM lower 64KB or RAM (UMB) | |
+| 0xC0000 - 0xC7FFF | 1 1 0 0 [0] | 32 KB | EGA/VGA ROM | |
+| 0xC8000 - 0xEFFFF | 1 1 0 0 [1] - 1 1 1 0 [1] | 160 KB | Selectable between ROM lower 64KB or RAM (UMB) using J9 | Custom ROM/RAM ranges available by reprogramming SPLD |
 | 0xF0000 - 0xFFFFF | 1 1 0 0 - 1 1 1 1 | 64 KB | ROM - BIOS and Extensions | |
 
 
@@ -159,7 +159,7 @@ Only for CGA/MDA graphics adapters
 - 3-4: 3 Wait States
 - 4-5: 4 Wait States
 
-### J9 - Address range 0xE0000 - 0xEFFFF: Map to ROM or RAM
+### J9 - Address range 0xC8000 - 0xEFFFF: Map to ROM or RAM
 - 1-2: Mapped to RAM (for UMBs - default)
 - 2-3: Mapped to ROM (for extension ROMs)
 
