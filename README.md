@@ -231,7 +231,9 @@ There is a single Data, Address and Control Bus on the XTjr, all driven by 1 set
 
 I deviated away a lot in the amplication and filtering part of Serge's [ISA OPL2 Card](http://www.malinov.com/Home/sergeys-projects/isa-opl2-card) to save some components and get away from any amps that required 12V. So I copied an example circuit from the TPA711D datasheet and went with that. Seems to work ok, but I suspect it will not sound as good as a real Adlib card and can be a bit noisy, but the sound from Micros was never the best anyway.
 
-My mixer is very basic using resisters instead of op-amps. 
+In addition I added a Texas Instruments SN76496 (SN76489 derivative) so that software using PCjr or Tandy Sound are supported. The PC Speaker is also routed to the Audio In on the chip so that it is also output through the Mixer - with volume control! - to the 3.5mm audio at the rear.
+
+The mixer for combining the YM3812 and SN76496 is very simple passive affair using resisters, and works fine.
 
 ### Power Supply
 
